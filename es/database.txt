@@ -1,0 +1,61 @@
+-- Adminer 4.2.5 MySQL dump
+
+SET NAMES utf8;
+SET time_zone = '+00:00';
+SET foreign_key_checks = 0;
+SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
+
+DROP TABLE IF EXISTS `clienti`;
+CREATE TABLE `clienti` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) NOT NULL,
+  `mail` varchar(100) NOT NULL,
+  `cellulare` varchar(20) NOT NULL,
+  `telefono` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `clienti` (`id`, `nome`, `mail`, `cellulare`, `telefono`) VALUES
+(1,	'gianni',	'ronca@gmail.com',	'3456787656',	'0185467687'),
+(2,	'debora',	'ubriachi@alvolante.com',	'3456783244',	'0184567345'),
+(3,	'giulia',	'rullatifrulla@gmail.com',	'3456549395',	'3948574636'),
+(4,	'giulia',	'rullatifrulla@gmail.com',	'3456549395',	'3948574636');
+
+DROP TABLE IF EXISTS `ricevute`;
+CREATE TABLE `ricevute` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `clienti_id` int(10) unsigned NOT NULL,
+  `dataemissione` date NOT NULL,
+  `descrizione` varchar(100) NOT NULL,
+  `importo` double NOT NULL,
+  `numero_ric` varchar(10) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `clienti_id` (`clienti_id`),
+  CONSTRAINT `ricevute_ibfk_1` FOREIGN KEY (`clienti_id`) REFERENCES `clienti` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `ricevute` (`id`, `clienti_id`, `dataemissione`, `descrizione`, `importo`, `numero_ric`) VALUES
+(2,	1,	'2017-03-07',	'pinco pallino',	10,	'3'),
+(3,	1,	'1970-01-01',	'cavolo',	10,	''),
+(4,	1,	'1970-01-01',	'cavolo',	10,	''),
+(6,	2,	'1970-01-01',	'cavolo calore',	10,	''),
+(7,	2,	'1970-01-01',	'cavolo calore',	567,	'2a'),
+(8,	2,	'1970-01-01',	'cavolo calore',	1055,	''),
+(9,	2,	'1970-01-01',	'cavolo calore',	10,	''),
+(10,	2,	'1970-01-01',	'vivivi',	154,	''),
+(11,	2,	'1970-01-01',	'vivivi',	34,	''),
+(12,	2,	'1970-01-01',	'vivivi',	34,	''),
+(13,	1,	'2031-01-29',	'cavolo',	22,	'3d'),
+(14,	1,	'2015-01-29',	'cavolo',	22,	''),
+(15,	1,	'2015-01-29',	'cavolo',	22,	''),
+(16,	1,	'2015-01-29',	'cavolo',	22,	''),
+(17,	1,	'2033-01-30',	'cavoloso',	345,	''),
+(18,	1,	'2033-01-30',	'cavoloso',	345,	''),
+(19,	2,	'2020-03-06',	'vvvvv',	44,	''),
+(20,	2,	'2020-03-06',	'vvvvv',	44,	''),
+(21,	2,	'2020-03-06',	'vvvvv',	44,	''),
+(22,	2,	'2020-03-06',	'vvvvv',	44,	''),
+(23,	2,	'2020-03-06',	'vvvvv',	44,	''),
+(24,	2,	'2020-03-06',	'vvvvv',	44,	'');
+
+-- 2017-03-10 11:50:24
